@@ -44,6 +44,9 @@ func LambdaExec(ctx context.Context, event events.CognitoEventUserPoolsPostConfi
 		fmt.Println("Error when retrieving the Secret" + err.Error())
 		return event, err
 	}
+
+	err = db.SignUp(data)
+
 	return event, err
 }
 
