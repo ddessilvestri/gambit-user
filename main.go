@@ -17,6 +17,7 @@ func main() {
 	lambda.Start(LambdaExec)
 }
 
+// test
 func LambdaExec(ctx context.Context, event events.CognitoEventUserPoolsPostConfirmation) (events.CognitoEventUserPoolsPostConfirmation, error) {
 	awsgo.AWSInit()
 
