@@ -19,16 +19,16 @@ func ReadSecret() error {
 	return err
 }
 
-func DbConnect() error{
-	Db, err = sql.Open("mysql",ConnStr(SecretModel))
+func DbConnect() error {
+	Db, err = sql.Open("mysql", ConnStr(SecretModel))
 	if err != nil {
 		fmt.Println(err.Error())
-		return err 
+		return err
 	}
 	err = Db.Ping()
 	if err != nil {
 		fmt.Println(err.Error())
-		return err	
+		return err
 	}
 
 	fmt.Println("Successfully database connection")
@@ -36,12 +36,13 @@ func DbConnect() error{
 }
 
 func ConnStr(json models.SecretRDSJson) string {
-	var dbUser, authToken,dbEndpoint,dbName string
+	var dbUser, authToken, dbEndpoint, dbName string
 	dbUser = json.Username
 	authToken = json.Password
 	dbEndpoint = json.Host
 	dbName = "gambit"
-	dsn :=fmt.Sprintf("%s:%s@tcp(%s)/%s?allowCleartextPassword=true",dbUser,authToken,dbEndpoint,dbName)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?allowCleartextPasswords=true",
+		dbUser, authToken, dbEndpoint, dbName)
 	fmt.Println(dsn)
 	return dsn
 }
